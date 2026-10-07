@@ -1,0 +1,7 @@
+---
+- name: Create PostgreSQL application database
+  become_user: postgres
+  community.postgresql.postgresql_db:
+    name: appdb
+    owner: postgres
+    state: present

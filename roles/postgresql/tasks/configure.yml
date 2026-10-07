@@ -1,0 +1,14 @@
+---
+- name: Ensure PostgreSQL listens on all interfaces
+  lineinfile:
+    path: /etc/postgresql/16/main/postgresql.conf
+    regexp: '^#?listen_addresses'
+    line: "listen_addresses = '*'"
+  notify: restart postgresql
+
+- name: Allow remote PostgreSQL connections
+  lineinfile:
+    path: /etc/postgresql/16/main/pg_hba.conf
+    line: "host all all 0.0.0.0/0 scram-sha-256"
+    state: present
+  notify: restart postgresql

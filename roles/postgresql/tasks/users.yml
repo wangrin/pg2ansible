@@ -1,0 +1,7 @@
+---
+- name: Create PostgreSQL application user
+  become_user: postgres
+  community.postgresql.postgresql_user:
+    name: postgres
+    password: "postgres"
+    state: present

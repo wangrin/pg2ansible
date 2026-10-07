@@ -1,0 +1,7 @@
+---
+- name: Installation PostgreSQL
+  hosts: postgresql
+  become: true
+
+  roles:
+    - postgresql
