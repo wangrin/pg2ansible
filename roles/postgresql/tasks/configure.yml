@@ -1,7 +1,7 @@
 ---
 - name: Ensure PostgreSQL listens on all interfaces
   lineinfile:
-    path: /etc/postgresql/16/main/postgresql.conf
+    path: /etc/postgresql/18/main/postgresql.conf
     regexp: '^#?listen_addresses'
     line: "listen_addresses = '*'"
   notify: restart postgresql
