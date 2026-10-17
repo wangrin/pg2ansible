@@ -1,2 +1,5 @@
 ---
 # defaults file for roles/postgresql
+postgresql_version: "18"
+postgresql_cluster_name: main
+postgresql_conf_dir: "/etc/postgresql/{{ postgresql_version }}/{{ postgresql_cluster_name }}"
