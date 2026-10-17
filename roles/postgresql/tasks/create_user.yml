@@ -1,0 +1,20 @@
+---
+- name: Vérifier que les variables utilisateur sont présentes
+  ansible.builtin.assert:
+    that:
+      - pg_new_user is defined
+      - pg_new_user | length > 0
+      - pg_new_password is defined
+      - pg_new_password | length >= 4
+    fail_msg: "Le nom utilisateur et un mot de passe d'au moins 4  caractères sont obligatoires."
+  no_log: true
+
+- name: Créer l'utilisateur PostgreSQL
+  community.postgresql.postgresql_user:
+    name: "{{ pg_new_user }}"
+    password: "{{ pg_new_password }}"
+    role_attr_flags: LOGIN
+    state: present
+  become: true
+  become_user: postgres
+  no_log: true

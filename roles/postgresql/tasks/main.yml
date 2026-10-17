@@ -4,4 +4,5 @@
 - import_tasks: configure.yml
 - import_tasks: users.yml
 - import_tasks: databases.yml
+- import_tasks: create_user.yml
 # tasks file for roles/postgresql
