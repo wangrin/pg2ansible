@@ -1,0 +1,7 @@
+---
+- name: Install MariaDB on Ubuntu
+  hosts: mariadb
+  become: true
+
+  roles:
+    - mariadb

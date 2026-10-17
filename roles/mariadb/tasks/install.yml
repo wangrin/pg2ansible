@@ -1,0 +1,19 @@
+---
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+
+- name: Install MariaDB packages
+  ansible.builtin.apt:
+    name:
+      - mariadb-server
+      - mariadb-client
+      - python3-pymysql
+    state: present
+
+- name: Start and enable MariaDB
+  ansible.builtin.service:
+    name: mariadb
+    state: started
+    enabled: true
