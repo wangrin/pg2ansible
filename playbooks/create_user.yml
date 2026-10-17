@@ -1,0 +1,10 @@
+---
+- name: Création d'un utilisateur PostgreSQL
+  hosts: postgresql
+  become: true
+
+  tasks:
+    - name: Exécuter uniquement la création utilisateur
+      ansible.builtin.include_role:
+        name: postgresql
+        tasks_from: create_user

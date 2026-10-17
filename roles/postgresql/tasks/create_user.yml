@@ -3,11 +3,11 @@
   ansible.builtin.assert:
     that:
       - pg_new_user is defined
-      - pg_new_user | length > 0
+      - pg_new_user | trim | length > 0
       - pg_new_password is defined
       - pg_new_password | length >= 4
-    fail_msg: "Le nom utilisateur et un mot de passe d'au moins 4  caractères sont obligatoires."
-  no_log: true
+    fail_msg: "Le nom utilisateur et un mot de passe d'au moins 4 caractères sont obligatoires."
+    success_msg: "Les paramètres utilisateur sont valides."
 
 - name: Créer l'utilisateur PostgreSQL
   community.postgresql.postgresql_user:
