@@ -1,0 +1,19 @@
+---
+- name: Vérifier les paramètres utilisateur MariaDB
+  ansible.builtin.assert:
+    that:
+      - mariadb_new_user is defined
+      - mariadb_new_user | trim | length > 0
+      - mariadb_new_password is defined
+      - mariadb_new_password | length >= 8
+    fail_msg: "Le nom utilisateur et un mot de passe d'au moins 8 caractères sont obligatoires."
+
+- name: Créer uniquement l'utilisateur MariaDB
+  community.mysql.mysql_user:
+    name: "{{ mariadb_new_user }}"
+    password: "{{ mariadb_new_password }}"
+    host: "{{ mariadb_new_host | default('localhost') }}"
+    state: present
+    login_unix_socket: /run/mysqld/mysqld.sock
+  become: true
+  no_log: true

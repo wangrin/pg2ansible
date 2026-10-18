@@ -1,0 +1,10 @@
+---
+- name: Créer uniquement un utilisateur MariaDB
+  hosts: mariadb
+  become: true
+
+  tasks:
+    - name: Exécuter la tâche de création utilisateur MariaDB
+      ansible.builtin.include_role:
+        name: mariadb
+        tasks_from: create_user
